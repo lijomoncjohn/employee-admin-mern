@@ -9,10 +9,11 @@ const UserSchema = new mongoose.Schema(
 		email: {
 			type: String,
 			required: [true, 'Please add Email Id'],
+			unique: true,
 		},
 		mobile: {
 			type: String,
-			required: [true, 'Please add Mobile nuber'],
+			required: [true, 'Please add Mobile number'],
 		},
 		age: {
 			type: Number,
@@ -23,9 +24,10 @@ const UserSchema = new mongoose.Schema(
 		role: {
 			type: String,
 			enum: ['admin', 'employee'],
+			default: 'employee',
 		},
 	},
 	{ timestamps: true }
 );
 
-modules.exports = User = mongoose.model('User', UserSchema);
+module.exports = User = mongoose.model('User', UserSchema);

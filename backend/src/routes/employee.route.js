@@ -8,7 +8,7 @@ router.route('/').post(EmployeeController.create).get(EmployeeController.list);
 
 router
 	.route('/:id')
-	.post(EmployeeController.update)
-	.get(EmployeeController.remove);
+	.put(EmployeeController.update)
+	.delete(EmployeeController.remove);
 
 module.exports = router;
