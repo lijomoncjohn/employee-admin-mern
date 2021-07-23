@@ -2,8 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
+const DbConnection = require('./src/hepers/dbConection');
+
 // For managing env variables
 dotenv.config({ path: './src/config/config.env' });
+
+// Establish connection to SB
+DbConnection();
 
 // Import router modules
 const AuthRoute = require('./src/routes/auth.routes');
