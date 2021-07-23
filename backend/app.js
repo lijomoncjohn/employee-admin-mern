@@ -11,7 +11,8 @@ dotenv.config({ path: './src/config/config.env' });
 DbConnection();
 
 // Import router modules
-const AuthRoute = require('./src/routes/auth.routes');
+const AuthRoute = require('./src/routes/auth.route');
+const EmployeeRoute = require('./src/routes/employee.route');
 
 // Init express application
 const app = express();
@@ -22,6 +23,7 @@ app.use(cors());
 
 // Mounting routes to the app
 app.use('/api/auth', AuthRoute);
+app.use('/api/employee', EmployeeRoute);
 
 const PORT = process.env.PORT;
 
