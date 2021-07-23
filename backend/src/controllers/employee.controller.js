@@ -11,7 +11,7 @@ exports.create = async (req, res, next) => {
 		});
 	} catch (error) {
 		return res.status(500).json({
-			success: true,
+			success: false,
 			message: 'Failed to create employee details',
 			error: {
 				error: error.message,
@@ -33,7 +33,7 @@ exports.list = async (req, res, next) => {
 		});
 	} catch (error) {
 		return res.status(500).json({
-			success: true,
+			success: false,
 			message: 'Failed to fetch employee details',
 		});
 	}
@@ -52,7 +52,7 @@ exports.update = async (req, res, next) => {
 		});
 	} catch (error) {
 		return res.status(500).json({
-			success: true,
+			success: false,
 			message: 'Failed to update employee details',
 		});
 	}
@@ -68,7 +68,7 @@ exports.remove = async (req, res, next) => {
 		});
 	} catch (error) {
 		return res.status(500).json({
-			success: true,
+			success: false,
 			message: 'Failed to remove employee details',
 		});
 	}
