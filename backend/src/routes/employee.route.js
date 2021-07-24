@@ -1,14 +1,17 @@
 const express = require('express');
 
 const EmployeeController = require('../controllers/employee.controller');
-
+const { authenticate } = require('../hepers/authenticate');
 const router = express.Router();
 
-router.route('/').post(EmployeeController.create).get(EmployeeController.list);
+router
+	.route('/')
+	.post(authenticate, EmployeeController.create)
+	.get(authenticate, EmployeeController.list);
 
 router
 	.route('/:id')
-	.put(EmployeeController.update)
-	.delete(EmployeeController.remove);
+	.put(authenticate, EmployeeController.update)
+	.delete(authenticate, EmployeeController.remove);
 
 module.exports = router;
