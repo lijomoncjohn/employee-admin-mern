@@ -1,3 +1,5 @@
 {
-    "BASE_URL": "http://localhost:5000"
+    "BASE_URL": "http://localhost:5000",
+    "CONTROLLER_AUTH": "auth",
+    "ACTION_TOKEN": "token"
 }
