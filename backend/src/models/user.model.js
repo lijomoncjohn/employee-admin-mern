@@ -28,6 +28,13 @@ const UserSchema = new mongoose.Schema(
 			enum: ['admin', 'employee'],
 			default: 'employee',
 		},
+		tokens: [
+			{
+				token: {
+					type: String,
+				},
+			},
+		],
 	},
 	{ timestamps: true }
 );

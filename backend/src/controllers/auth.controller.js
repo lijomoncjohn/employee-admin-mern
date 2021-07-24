@@ -21,6 +21,10 @@ exports.login = async (req, res, next) => {
 
 	const token = user.genrateToken();
 
+	user.tokens = user.tokens.concat({ token: token });
+
+	await user.save();
+
 	res.status(200).json({
 		success: true,
 		message: 'Loggin success',
