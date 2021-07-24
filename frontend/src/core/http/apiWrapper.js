@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import Axios from './interceptors';
 
 import { ApiMethods, HTTP_HEADER } from '../base/constants';
 import { Config } from '../ApiConfigs/config.json';
