@@ -1,5 +1,4 @@
 import { configureStore, MiddlewareArray } from '@reduxjs/toolkit';
-import { processResult } from 'immer/dist/internal';
 import createSagaMiddleware, { END } from 'redux-saga';
 
 import rootReducer from './rootReducer';
@@ -14,8 +13,7 @@ export default function configureAppStore() {
 		reducer: rootReducer,
 		preloadedState: {},
 		middleware: new MiddlewareArray().concat(sagaMiddleware),
-		devTools:
-			!processResult.env.NODE_ENV || processResult.env.NODE_ENV === 'development',
+		devTools: !process.env.NODE_ENV || process.env.NODE_ENV === 'development',
 	});
 
 	sagaMiddleware.run(rootSaga);
