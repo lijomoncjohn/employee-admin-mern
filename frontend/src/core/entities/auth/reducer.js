@@ -12,9 +12,9 @@ const reducer = createReducer(initialAuthState, {
 		state.apiStatus = 1;
 		if (data.data.success) {
 			state.login.success = true;
-			state.login.message = data.message;
+			state.login.message = data.data.message || 'success';
 			state.login.error = null;
-			state.login.data = data.data;
+			state.login.data = data.data.data;
 		} else {
 			state.login.success = false;
 			state.login.message = data.data.message;

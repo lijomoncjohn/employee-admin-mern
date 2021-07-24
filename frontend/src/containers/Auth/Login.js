@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import FormGroup from '../../components/Form/FormGroup';
 import FormLabel from '../../components/Form/FormLabel';
@@ -17,6 +17,14 @@ import { AuthAction } from '../../core/entities/auth/action';
 
 const Login = () => {
 	const dispatch = useDispatch();
+
+	const login = useSelector((state) => state.auth.login);
+
+	useEffect(() => {
+		if (login !== undefined) {
+			console.log('status:', login.message);
+		}
+	}, [dispatch, login]);
 
 	const handleLogin = (values, { setSubmitting }) => {
 		console.log(JSON.stringify(values));
@@ -83,15 +91,11 @@ const Login = () => {
 										<ErrorText error={errors.password} />
 									)}
 								</FormGroup>
-								<div class='d-flex justify-content-between'>
+								<div className='d-flex justify-content-between'>
 									<Link to='/forgot' className='mt-2'>
 										Forgot password?
 									</Link>
-									<Button
-										type='submit'
-										classNames='btn-primary btn-success px-3'
-										title='Login'
-									/>
+									<Button classNames='btn-primary btn-success px-3' title='Login' />
 								</div>
 							</form>
 						)}
