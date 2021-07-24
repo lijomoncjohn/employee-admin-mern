@@ -1,7 +1,7 @@
 import Axios from './interceptors';
 
 import { ApiMethods, HTTP_HEADER } from '../base/constants';
-import { Config } from '../ApiConfigs/config.json';
+import Config from '../ApiConfigs/config.json';
 
 const BASE_URL = Config.BASE_URL;
 

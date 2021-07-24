@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import { ActionType } from './actionType';
 import { Service } from './service';
 
-const login = function* (action) {
+const loginSaga = function* (action) {
 	const loginResponse = yield Service.login(action.values);
 
 	if (!loginResponse.error) {
@@ -20,7 +20,7 @@ const login = function* (action) {
 };
 
 const loginWatch = function* () {
-	yield takeLatest(ActionType.LOGIN_BEGIN, login);
+	yield takeLatest(ActionType.LOGIN_BEGIN, loginSaga);
 };
 
 export { loginWatch };

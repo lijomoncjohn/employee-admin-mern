@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 
 import FormGroup from '../../components/Form/FormGroup';
 import FormLabel from '../../components/Form/FormLabel';
@@ -12,10 +13,14 @@ import CardHeader from '../../components/UI/CardHeader';
 
 import './Login.css';
 import ErrorText from '../../components/Form/ErrorText';
+import { AuthAction } from '../../core/entities/auth/action';
 
 const Login = () => {
+	const dispatch = useDispatch();
+
 	const handleLogin = (values, { setSubmitting }) => {
 		console.log(JSON.stringify(values));
+		dispatch(AuthAction.login(values));
 	};
 
 	return (
@@ -56,12 +61,24 @@ const Login = () => {
 							<form onSubmit={handleSubmit}>
 								<FormGroup>
 									<FormLabel label='Email address' />
-									<TextInput type='email' name='email' />
+									<TextInput
+										type='email'
+										name='email'
+										onChange={handleChange}
+										onBlur={handleBlur}
+										value={values.email}
+									/>
 									{errors.email && touched.email && <ErrorText error={errors.email} />}
 								</FormGroup>
 								<FormGroup>
 									<FormLabel label='Password' />
-									<TextInput type='password' name='password' />
+									<TextInput
+										type='password'
+										name='password'
+										onChange={handleChange}
+										onBlur={handleBlur}
+										value={values.password}
+									/>
 									{errors.password && touched.password && (
 										<ErrorText error={errors.password} />
 									)}

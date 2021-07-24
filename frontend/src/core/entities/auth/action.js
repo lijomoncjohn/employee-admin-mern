@@ -1,6 +1,6 @@
 import { ActionType } from './actionType';
 
-export const Action = {
+export const AuthAction = {
 	login(values) {
 		return {
 			type: ActionType.LOGIN_BEGIN,

@@ -1,7 +1,8 @@
 import React from 'react';
 
 const TextInput = (props) => {
-	const { id, type, name, onChange, value, defaultValue, classNames } = props;
+	const { id, type, name, onChange, onBlur, value, defaultValue, classNames } =
+		props;
 
 	return (
 		<input
@@ -10,6 +11,7 @@ const TextInput = (props) => {
 			name={name}
 			id={id}
 			onChange={onChange}
+			onBlur={onBlur}
 			value={value}
 			defaultValue={defaultValue}
 		/>
