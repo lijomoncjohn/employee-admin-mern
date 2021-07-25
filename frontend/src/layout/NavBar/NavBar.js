@@ -37,6 +37,33 @@ const NavBar = () => {
 						</NavLink>
 					</li>
 				</ul>
+				<ul className='navbar-nav my-2 my-lg-0'>
+					<li class='nav-item dropdown'>
+						<span
+							class='nav-link dropdown-toggle'
+							id='navbarDropdown'
+							role='button'
+							data-toggle='dropdown'
+							aria-haspopup='true'
+							aria-expanded='false'>
+							Admin
+						</span>
+						<div
+							class='dropdown-menu dropdown-menu-right text-left'
+							aria-labelledby='navbarDropdown'>
+							<NavLink class='dropdown-item' to={''}>
+								Profile
+							</NavLink>
+							<NavLink class='dropdown-item' to={''}>
+								Change Password
+							</NavLink>
+							<div class='dropdown-divider'></div>
+							<NavLink class='dropdown-item' to={''}>
+								Logout
+							</NavLink>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	);

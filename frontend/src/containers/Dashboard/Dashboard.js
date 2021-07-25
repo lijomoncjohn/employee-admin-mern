@@ -8,7 +8,15 @@ import TableHeader from '../../components/UI/Table/TableHeader';
 import { AuthContext } from '../../core/context/authContext';
 import { EmpAction } from '../../core/entities/employee/action';
 
-const headings = ['Employee ID', 'Name', 'Email', 'Age', 'Address', 'Mobile'];
+const headings = [
+	'Employee ID',
+	'Name',
+	'Email',
+	'Age',
+	'Address',
+	'Mobile',
+	'Action',
+];
 
 const data = [
 	{
@@ -72,7 +80,7 @@ const Dashboard = () => {
 						</form>
 					</div>
 				</div>
-				<Table>
+				<Table className='table-sm'>
 					<TableHeader className='bg-light' headings={headings} />
 					<TableBody>
 						{emp.data.map((emp) => (
@@ -83,6 +91,10 @@ const Dashboard = () => {
 								<td>{emp.age}</td>
 								<td>{emp.address}</td>
 								<td>{emp.mobile}</td>
+								<td>
+									<Button classNames='btn-sm btn-success mr-2' title={'Edit'} />
+									<Button classNames='btn-sm btn-danger' title={'Delete'} />
+								</td>
 							</tr>
 						))}
 					</TableBody>

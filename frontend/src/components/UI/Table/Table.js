@@ -1,7 +1,11 @@
 import React from 'react';
 
-const Table = ({ children }) => {
-	return <table class='table table-bordered'>{children}</table>;
+const Table = ({ children, className }) => {
+	return (
+		<div class='table-responsive'>
+			<table className={`${className} table table-bordered`}>{children}</table>
+		</div>
+	);
 };
 
 export default Table;
