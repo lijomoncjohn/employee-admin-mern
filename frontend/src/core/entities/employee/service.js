@@ -18,4 +18,12 @@ export class Service extends ApiWrapper {
 			data: values,
 		});
 	}
+	static async updateEmployee(token, empId, values) {
+		return this.sendRequest({
+			url: `${Config.CONTROLLER_EMP}/${empId}`,
+			method: ApiMethods.PUT,
+			token,
+			data: values,
+		});
+	}
 }

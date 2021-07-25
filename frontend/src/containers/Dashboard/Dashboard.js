@@ -53,7 +53,8 @@ const Dashboard = () => {
 	};
 
 	const handleUpdate = (values, { setSubmitting }) => {
-		console.log(values);
+		dispatch(EmpAction.update(auth.token, editPreference._id, values));
+		setModal(false);
 	};
 
 	const handleEdit = (values) => {

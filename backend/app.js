@@ -2,9 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-const errorHandler = require('./src/hepers/errorHandler');
+const errorHandler = require('./src/helpers/errorHandler');
 
-const DbConnection = require('./src/hepers/dbConection');
+const DbConnection = require('./src/helpers/dbConection');
 
 // For managing env variables
 dotenv.config({ path: './src/config/config.env' });

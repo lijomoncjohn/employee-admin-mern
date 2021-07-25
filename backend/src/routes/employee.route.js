@@ -1,7 +1,7 @@
 const express = require('express');
 
 const employeeController = require('../controllers/employee.controller');
-const { authenticate, authorize } = require('../hepers/auth');
+const { authenticate, authorize } = require('../helpers/auth');
 
 const router = express.Router();
 

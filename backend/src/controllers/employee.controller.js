@@ -1,4 +1,4 @@
-const catchAsync = require('../hepers/catchAsync');
+const catchAsync = require('../helpers/catchAsync');
 const User = require('../models/user.model');
 
 exports.create = catchAsync(async (req, res, next) => {

@@ -46,4 +46,28 @@ const addEmpWatch = function* () {
 	yield takeLatest(ActionType.ADD_EMPLOYEE_LIST_BEGIN, addEmpSaga);
 };
 
-export { fetchAllEmpsWatch, addEmpWatch };
+const updateEmpSaga = function* (action) {
+	const empUpdateResponse = yield Service.updateEmployee(
+		action.token,
+		action.empId,
+		action.values
+	);
+
+	if (!empUpdateResponse.error) {
+		yield put({
+			type: ActionType.UPDATE_EMPLOYEE_SUCCESS,
+			data: empUpdateResponse.value,
+		});
+	} else {
+		yield put({
+			type: ActionType.UPDATE_EMPLOYEE_FAILED,
+			data: empUpdateResponse.value,
+		});
+	}
+};
+
+const updateEmpWatch = function* () {
+	yield takeLatest(ActionType.UPDATE_EMPLOYEE_BEGIN, updateEmpSaga);
+};
+
+export { fetchAllEmpsWatch, addEmpWatch, updateEmpWatch };

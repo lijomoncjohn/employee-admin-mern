@@ -14,4 +14,12 @@ export const EmpAction = {
 			values,
 		};
 	},
+	update(token, empId, values) {
+		return {
+			type: ActionType.UPDATE_EMPLOYEE_BEGIN,
+			token,
+			empId,
+			values,
+		};
+	},
 };

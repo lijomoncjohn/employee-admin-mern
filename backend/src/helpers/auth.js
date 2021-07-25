@@ -14,7 +14,7 @@ exports.authenticate = catchAsync(async (req, res, next) => {
 	}
 
 	if (!token) {
-		return next(new ErrorResponse('Not authorized to access this', 401));
+		return next(new ErrorResponse('Invalid authentication token', 401));
 	}
 
 	try {

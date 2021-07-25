@@ -1,4 +1,4 @@
-const catchAsync = require('../hepers/catchAsync');
+const catchAsync = require('../helpers/catchAsync');
 const ErrorResponse = require('../utils/errorResponse');
 
 exports.login = catchAsync(async (req, res, next) => {

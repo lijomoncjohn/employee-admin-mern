@@ -39,7 +39,7 @@ export class ApiWrapper {
 					axiosResult = await Axios.get(url, axiosOptions);
 					break;
 				case ApiMethods.PUT:
-					axiosResult = await Axios.put(url, axiosOptions);
+					axiosResult = await Axios.put(url, options.data, axiosOptions);
 					break;
 				case ApiMethods.DELETE:
 					axiosResult = await Axios.delete(url, axiosOptions);
