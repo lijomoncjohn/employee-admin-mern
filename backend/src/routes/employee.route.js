@@ -7,7 +7,7 @@ const router = express.Router();
 
 router
 	.route('/')
-	.post(authenticate, authorize('admin'), employeeController.create)
+	.post(employeeController.create)
 	.get(authenticate, authorize('admin'), employeeController.list);
 
 router

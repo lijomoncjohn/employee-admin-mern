@@ -48,7 +48,7 @@ exports.resetPassword = async (req, res, next) => {
 
 exports.logout = async (req, res, next) => {
 	try {
-		req.user.token = req.user.tokens.filter((token) => {
+		req.user.tokens = req.user.tokens.filter((token) => {
 			return token.token !== req.token;
 		});
 
