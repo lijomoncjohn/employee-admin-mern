@@ -1,13 +1,12 @@
+const ErrorResponse = require('../utils/errorResponse');
+
 exports.login = async (req, res, next) => {
 	const { email, password } = req.body;
 
 	const user = await User.findOne({ email, role: 'admin' });
 
 	if (!user) {
-		return res.status(200).json({
-			success: false,
-			message: "User doesn't exist",
-		});
+		return next(new ErrorResponse(`User not found with email ${email}`, 404));
 	}
 
 	const isMatch = await user.matchPassword(password);

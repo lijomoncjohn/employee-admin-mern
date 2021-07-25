@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
+const errorHandler = require('./src/hepers/errorHandler');
+const ErrorResponse = require('./src/utils/errorResponse');
+
 const DbConnection = require('./src/hepers/dbConection');
 
 // For managing env variables
@@ -24,6 +27,8 @@ app.use(cors());
 // Mounting routes to the app
 app.use('/api/auth', AuthRoute);
 app.use('/api/employee', EmployeeRoute);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT;
 
