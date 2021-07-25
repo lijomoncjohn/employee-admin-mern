@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import EmployeeForm from '../../components/Employee/EmployeeForm';
 
+import EmployeeForm from '../../components/Employee/EmployeeForm';
 import Button from '../../components/UI/Button/Button';
 import AppModal from '../../components/UI/Modal/AppModal';
 import Table from '../../components/UI/Table/Table';
 import TableBody from '../../components/UI/Table/TableBody';
 import TableHeader from '../../components/UI/Table/TableHeader';
+
 import { AuthContext } from '../../core/context/authContext';
 import { AuthAction } from '../../core/entities/auth/action';
 import { EmpAction } from '../../core/entities/employee/action';
@@ -19,17 +20,6 @@ const headings = [
 	'Address',
 	'Mobile',
 	'Action',
-];
-
-const data = [
-	{
-		id: 1,
-		name: 'Alwin',
-		email: 'alwin@email.com',
-		age: 25,
-		address: 'alwin, chengannur, kerala',
-		mobile: '9000010000',
-	},
 ];
 
 const Dashboard = () => {
@@ -58,7 +48,8 @@ const Dashboard = () => {
 	const [editPreference, setEditPreference] = useState(initialData);
 
 	const handleSubmit = (values, { setSubmitting }) => {
-		console.log(values);
+		dispatch(EmpAction.create(values, auth.token));
+		setModal(false);
 	};
 
 	const handleUpdate = (values, { setSubmitting }) => {
@@ -88,22 +79,28 @@ const Dashboard = () => {
 	useEffect(() => {
 		dispatch(AuthAction.resetAuth());
 		dispatch(EmpAction.fetchAllEmpployees(auth.token));
+		setModal(false);
 	}, []);
 
 	useEffect(() => {
-		if (emp !== undefined) {
-			console.log(emp.message);
-		}
-	}, [auth.token.dispatch]);
+		dispatch(EmpAction.fetchAllEmpployees(auth.token));
+	}, [dispatch, auth.token, modal]);
 
-	if (emp === undefined) {
+	useEffect(() => {
+		if (emp !== undefined && emp.success) {
+			dispatch(EmpAction.fetchAllEmpployees(auth.token));
+			setModal(false);
+		}
+	}, [dispatch, auth.token]);
+
+	if (emp === undefined || emp.data.length === 0) {
 		return <h3>No employees</h3>;
 	}
 
 	return (
 		<>
 			<div>
-				<div class='d-flex flex-row-reverse mb-3 mt-3'>
+				<div className='d-flex flex-row-reverse mb-3 mt-3'>
 					<div className='ml-3'>
 						<Button
 							className='btn-sm btn-primary'
@@ -112,13 +109,13 @@ const Dashboard = () => {
 						/>
 					</div>
 					<div className='ml-3'>
-						<form class='form-inline'>
-							<label class='sr-only' for='inlineFormInputName2'>
+						<form className='form-inline'>
+							<label className='sr-only' for='inlineFormInputName2'>
 								Name
 							</label>
 							<input
 								type='text'
-								class='form-control form-control-sm mb-2 mr-sm-2'
+								className='form-control form-control-sm mb-2 mr-sm-2'
 								placeholder='search here...'
 							/>
 							<Button

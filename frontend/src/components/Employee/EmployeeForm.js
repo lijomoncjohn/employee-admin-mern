@@ -6,7 +6,7 @@ import FormRow from '../Form/FormRow';
 import TextInput from '../Form/TextInput';
 import Button from '../UI/Button/Button';
 
-const EmployeeForm = (props, { handleClose, handleEdit }) => {
+const EmployeeForm = (props) => {
 	const {
 		employeeId = '',
 		name = '',

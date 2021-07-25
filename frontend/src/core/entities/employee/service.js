@@ -10,4 +10,12 @@ export class Service extends ApiWrapper {
 			token,
 		});
 	}
+	static async addNewEmployee(values, token) {
+		return this.sendRequest({
+			url: `${Config.CONTROLLER_EMP}`,
+			method: ApiMethods.POST,
+			token,
+			data: values,
+		});
+	}
 }

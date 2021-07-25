@@ -56,9 +56,9 @@ const NavBar = () => {
 					</li>
 				</ul>
 				<ul className='navbar-nav my-2 my-lg-0'>
-					<li class='nav-item dropdown'>
+					<li className='nav-item dropdown'>
 						<Link
-							class='nav-link dropdown-toggle'
+							className='nav-link dropdown-toggle'
 							id='navbarDropdown'
 							role='button'
 							data-toggle='dropdown'
@@ -67,16 +67,16 @@ const NavBar = () => {
 							Admin
 						</Link>
 						<div
-							class='dropdown-menu dropdown-menu-right text-left'
+							className='dropdown-menu dropdown-menu-right text-left'
 							aria-labelledby='navbarDropdown'>
-							<NavLink class='dropdown-item' to={''}>
+							<NavLink className='dropdown-item' to={''}>
 								Profile
 							</NavLink>
-							<NavLink class='dropdown-item' to={''}>
+							<NavLink className='dropdown-item' to={''}>
 								Change Password
 							</NavLink>
-							<div class='dropdown-divider'></div>
-							<NavLink class='dropdown-item' to={''} onClick={logout}>
+							<div className='dropdown-divider'></div>
+							<NavLink className='dropdown-item' to={''} onClick={logout}>
 								Logout
 							</NavLink>
 						</div>
