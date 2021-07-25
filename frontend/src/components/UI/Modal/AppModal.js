@@ -13,17 +13,6 @@ const AppModal = (props) => {
 				</Modal.Header>
 			)}
 			<Modal.Body>{children}</Modal.Body>
-			<Modal.Footer>
-				<Button
-					className={'btn-sm btn-outline-primary'}
-					title={'Cancel'}
-					onClick={handleClose}>
-					Cancel
-				</Button>
-				<Button className={'btn-sm'} title={'Submit'} onClick={handleClose}>
-					Submit
-				</Button>
-			</Modal.Footer>
 		</Modal>
 	);
 };

@@ -40,8 +40,50 @@ const Dashboard = () => {
 
 	const [modal, setModal] = useState(false);
 
-	const handleClose = () => setModal(false);
+	const handleClose = () => {
+		setModal(false);
+		setEditPreference({});
+	};
 	const handleShow = () => setModal(true);
+
+	const initialData = {
+		employeeId: '',
+		name: '',
+		email: '',
+		mobile: '',
+		age: '',
+		address: '',
+	};
+
+	const [editPreference, setEditPreference] = useState(initialData);
+
+	const handleSubmit = (values, { setSubmitting }) => {
+		console.log(values);
+	};
+
+	const handleUpdate = (values, { setSubmitting }) => {
+		console.log(values);
+	};
+
+	const handleEdit = (values) => {
+		if (values === null) {
+			setEditPreference({});
+			return;
+		}
+
+		setEditPreference({
+			employeeId: values.employeeId,
+			name: values.name,
+			email: values.email,
+			mobile: values.mobile,
+			age: values.age,
+			address: values.address,
+			_id: values._id,
+		});
+		setModal(true);
+	};
+
+	const handleDelete = () => {};
 
 	useEffect(() => {
 		dispatch(AuthAction.resetAuth());
@@ -63,7 +105,11 @@ const Dashboard = () => {
 			<div>
 				<div class='d-flex flex-row-reverse mb-3 mt-3'>
 					<div className='ml-3'>
-						<Button className='btn-sm' title={'Add new entry'} onClick={handleShow} />
+						<Button
+							className='btn-sm btn-primary'
+							title={'Add new entry'}
+							onClick={handleShow}
+						/>
 					</div>
 					<div className='ml-3'>
 						<form class='form-inline'>
@@ -77,7 +123,7 @@ const Dashboard = () => {
 							/>
 							<Button
 								type='submit'
-								className='btn btn-primary btn-sm mb-2'
+								className='btn btn-outline-primary btn-sm mb-2'
 								title={'GO'}
 							/>
 						</form>
@@ -95,7 +141,11 @@ const Dashboard = () => {
 								<td>{emp.address}</td>
 								<td>{emp.mobile}</td>
 								<td>
-									<Button className='btn-sm btn-success mr-2' title={'Edit'} />
+									<Button
+										className='btn-sm btn-success mr-2'
+										title={'Edit'}
+										onClick={() => handleEdit(emp)}
+									/>
 									<Button className='btn-sm btn-danger' title={'Delete'} />
 								</td>
 							</tr>
@@ -104,8 +154,17 @@ const Dashboard = () => {
 				</Table>
 			</div>
 
-			<AppModal show={modal} size={'lg'} handleClose={handleClose}>
-				<EmployeeForm />
+			<AppModal
+				show={modal}
+				size={'lg'}
+				heading={'Add new employee'}
+				handleClose={handleClose}>
+				<EmployeeForm
+					handleEdit={handleEdit}
+					editValues={editPreference}
+					handleUpdate={handleUpdate}
+					handleSubmit={handleSubmit}
+				/>
 			</AppModal>
 		</>
 	);
