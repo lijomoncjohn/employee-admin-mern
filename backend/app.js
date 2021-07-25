@@ -3,7 +3,6 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 const errorHandler = require('./src/hepers/errorHandler');
-const ErrorResponse = require('./src/utils/errorResponse');
 
 const DbConnection = require('./src/hepers/dbConection');
 

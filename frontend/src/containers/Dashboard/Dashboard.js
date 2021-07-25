@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Button from '../../components/UI/Button/Button';
 import Table from '../../components/UI/Table/Table';
 import TableBody from '../../components/UI/Table/TableBody';
 import TableHeader from '../../components/UI/Table/TableHeader';
+import { AuthContext } from '../../core/context/authContext';
+import { EmpAction } from '../../core/entities/employee/action';
 
 const headings = ['Employee ID', 'Name', 'Email', 'Age', 'Address', 'Mobile'];
 
@@ -18,6 +22,25 @@ const data = [
 ];
 
 const Dashboard = () => {
+	const dispatch = useDispatch();
+	const auth = useContext(AuthContext);
+
+	const emp = useSelector((state) => state.emp.emp);
+
+	useEffect(() => {
+		dispatch(EmpAction.fetchAllEmpployees(auth.token));
+	}, []);
+
+	useEffect(() => {
+		if (emp !== undefined) {
+			console.log(emp.message);
+		}
+	}, [auth.token.dispatch]);
+
+	if (emp === undefined) {
+		return <h3>No employees</h3>;
+	}
+
 	return (
 		<>
 			<div>
@@ -52,7 +75,7 @@ const Dashboard = () => {
 				<Table>
 					<TableHeader className='bg-light' headings={headings} />
 					<TableBody>
-						{data.map((emp) => (
+						{emp.data.map((emp) => (
 							<tr>
 								<td>{emp.id}</td>
 								<td>{emp.name}</td>

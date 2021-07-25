@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import reducer from '../entities/auth/reducer';
+import authReducer from '../entities/auth/reducer';
+import empReducer from '../entities/employee/reducer';
 
 const rootReducer = combineReducers({
-	auth: reducer,
+	auth: authReducer,
+	emp: empReducer,
 });
 
 export default rootReducer;
