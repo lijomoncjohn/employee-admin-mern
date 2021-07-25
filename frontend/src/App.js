@@ -7,9 +7,12 @@ import Layout from './layout/Layout';
 import { useAuth } from './core/context/authHook';
 import Dashboard from './containers/Dashboard/Dashboard';
 import { AuthContext } from './core/context/authContext';
+import Logout from './containers/Auth/Logout';
 
 function App() {
 	const { token, userId, login, logout } = useAuth();
+
+	console.log(token);
 
 	let routes;
 
@@ -17,6 +20,7 @@ function App() {
 		routes = (
 			<Switch>
 				<Route path={ROUTES.DASHBOARD} component={Dashboard} exact />
+				<Route path={ROUTES.LOGOUT} component={Logout} exact />
 				<Route path='*' component={Dashboard} />
 			</Switch>
 		);

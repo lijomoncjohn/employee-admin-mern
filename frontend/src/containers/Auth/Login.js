@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,15 +14,22 @@ import CardHeader from '../../components/UI/CardHeader';
 import './Login.css';
 import ErrorText from '../../components/Form/ErrorText';
 import { AuthAction } from '../../core/entities/auth/action';
+import { AuthContext } from '../../core/context/authContext';
 
 const Login = () => {
 	const dispatch = useDispatch();
+	const history = useHistory();
+	const auth = useContext(AuthContext);
 
 	const login = useSelector((state) => state.auth.login);
 
 	useEffect(() => {
-		if (login !== undefined) {
-			console.log('status:', login.message);
+		if (login !== undefined && login.success) {
+			console.log(login.data.token);
+			auth.login(login.data.token, login.data.userId);
+			history.push('/dashboard');
+		} else {
+			console.log(login.message);
 		}
 	}, [dispatch, login]);
 
