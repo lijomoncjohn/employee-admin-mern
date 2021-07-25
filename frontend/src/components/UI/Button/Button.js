@@ -1,15 +1,15 @@
 import React from 'react';
 
 const Button = (props) => {
-	const { id, onChange, value, defaultValue, title, classNames } = props;
+	const { id, onClick, value, defaultValue, title, className } = props;
 
 	return (
 		<button
 			id={id}
-			onChange={onChange}
+			onClick={onClick}
 			value={value}
 			defaultValue={defaultValue}
-			className={`${classNames} btn btn-md btn-primary`}>
+			className={`${className} btn btn-md btn-primary`}>
 			{title}
 		</button>
 	);

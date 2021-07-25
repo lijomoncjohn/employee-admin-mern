@@ -1,7 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import EmployeeForm from '../../components/Employee/EmployeeForm';
 
 import Button from '../../components/UI/Button/Button';
+import AppModal from '../../components/UI/Modal/AppModal';
 import Table from '../../components/UI/Table/Table';
 import TableBody from '../../components/UI/Table/TableBody';
 import TableHeader from '../../components/UI/Table/TableHeader';
@@ -36,6 +38,11 @@ const Dashboard = () => {
 
 	const emp = useSelector((state) => state.emp.emp);
 
+	const [modal, setModal] = useState(false);
+
+	const handleClose = () => setModal(false);
+	const handleShow = () => setModal(true);
+
 	useEffect(() => {
 		dispatch(AuthAction.resetAuth());
 		dispatch(EmpAction.fetchAllEmpployees(auth.token));
@@ -56,13 +63,7 @@ const Dashboard = () => {
 			<div>
 				<div class='d-flex flex-row-reverse mb-3 mt-3'>
 					<div className='ml-3'>
-						<button
-							type='button'
-							class='btn btn-primary btn-sm'
-							data-toggle='modal'
-							data-target='#exampleModal'>
-							Add new entry +
-						</button>{' '}
+						<Button className='btn-sm' title={'Add new entry'} onClick={handleShow} />
 					</div>
 					<div className='ml-3'>
 						<form class='form-inline'>
@@ -76,7 +77,7 @@ const Dashboard = () => {
 							/>
 							<Button
 								type='submit'
-								classNames='btn btn-primary btn-sm mb-2'
+								className='btn btn-primary btn-sm mb-2'
 								title={'GO'}
 							/>
 						</form>
@@ -87,15 +88,15 @@ const Dashboard = () => {
 					<TableBody>
 						{emp.data.map((emp) => (
 							<tr key={emp._id}>
-								<td>{emp.id}</td>
+								<td>{emp.employeeId}</td>
 								<td>{emp.name}</td>
 								<td>{emp.email}</td>
 								<td>{emp.age}</td>
 								<td>{emp.address}</td>
 								<td>{emp.mobile}</td>
 								<td>
-									<Button classNames='btn-sm btn-success mr-2' title={'Edit'} />
-									<Button classNames='btn-sm btn-danger' title={'Delete'} />
+									<Button className='btn-sm btn-success mr-2' title={'Edit'} />
+									<Button className='btn-sm btn-danger' title={'Delete'} />
 								</td>
 							</tr>
 						))}
@@ -103,39 +104,9 @@ const Dashboard = () => {
 				</Table>
 			</div>
 
-			<div
-				class='modal fade'
-				id='exampleModal'
-				tabindex='-1'
-				role='dialog'
-				aria-labelledby='exampleModalLabel'
-				aria-hidden='true'>
-				<div class='modal-dialog' role='document'>
-					<div class='modal-content'>
-						<div class='modal-header'>
-							<h5 class='modal-title' id='exampleModalLabel'>
-								Modal title
-							</h5>
-							<button
-								type='button'
-								class='close'
-								data-dismiss='modal'
-								aria-label='Close'>
-								<span aria-hidden='true'>&times;</span>
-							</button>
-						</div>
-						<div class='modal-body'>...</div>
-						<div class='modal-footer'>
-							<button type='button' class='btn btn-secondary' data-dismiss='modal'>
-								Close
-							</button>
-							<button type='button' class='btn btn-primary'>
-								Save changes
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
+			<AppModal show={modal} size={'lg'} handleClose={handleClose}>
+				<EmployeeForm />
+			</AppModal>
 		</>
 	);
 };

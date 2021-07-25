@@ -1,12 +1,12 @@
 import React from 'react';
 
 const TextInput = (props) => {
-	const { id, type, name, onChange, onBlur, value, defaultValue, classNames } =
+	const { id, type, name, onChange, onBlur, value, defaultValue, className } =
 		props;
 
 	return (
 		<input
-			className={`${classNames} form-control`}
+			className={`${className} form-control`}
 			type={type}
 			name={name}
 			id={id}

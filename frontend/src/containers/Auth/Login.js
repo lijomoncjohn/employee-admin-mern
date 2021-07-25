@@ -36,7 +36,7 @@ const Login = () => {
 
 	return (
 		<div className='section-login'>
-			<Card classNames='card-login'>
+			<Card className='card-login'>
 				<CardHeader>
 					<h5 className='font-weight-bold'>Log In</h5>
 				</CardHeader>
@@ -98,7 +98,7 @@ const Login = () => {
 									<Link to='/forgot' className='mt-2'>
 										Forgot password?
 									</Link>
-									<Button classNames='btn-primary btn-success px-3' title='Login' />
+									<Button className='btn-primary btn-success px-3' title='Login' />
 								</div>
 							</form>
 						)}
