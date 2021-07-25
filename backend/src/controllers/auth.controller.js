@@ -45,3 +45,20 @@ exports.resetPassword = async (req, res, next) => {
 		success: true,
 	});
 };
+
+exports.logout = async (req, res, next) => {
+	try {
+		req.user.token = req.user.tokens.filter((token) => {
+			return token.token !== req.token;
+		});
+
+		await req.user.save();
+
+		return res.status(200).json({
+			success: true,
+			message: 'Logged out successfully',
+		});
+	} catch (error) {
+		return next(new ErrorResponse('Failed to logout from server', 500));
+	}
+};

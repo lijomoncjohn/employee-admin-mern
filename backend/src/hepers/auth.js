@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+const ErrorResponse = require('../utils/errorResponse');
+
 exports.authenticate = async (req, res, next) => {
 	let token;
 
@@ -10,10 +12,7 @@ exports.authenticate = async (req, res, next) => {
 		token = req.headers.authorization.split(' ')[1];
 
 	if (!token) {
-		return res.status(401).json({
-			success: false,
-			message: 'Not authorized',
-		});
+		new ErrorResponse('Authentication token missing', 401);
 	}
 
 	try {
@@ -23,20 +22,16 @@ exports.authenticate = async (req, res, next) => {
 
 		next();
 	} catch (error) {
-		return res.status(401).json({
-			success: false,
-			message: 'Not authorized',
-		});
+		new ErrorResponse('You are not authorized', 401);
 	}
 };
 
-exports.authorize = async (...roles) => {
+exports.authorize = (...roles) => {
 	return (req, res, next) => {
 		if (!roles.includes(req.user.role)) {
-			return res.status(403).json({
-				success: false,
-				message: 'You are not authorized to access this',
-			});
+			return next(
+				new ErrorResponse('You are not authorized to aperform this action', 401)
+			);
 		}
 		next();
 	};

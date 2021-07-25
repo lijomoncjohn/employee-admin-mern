@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
+
 import { ROUTES } from '../../core/base/constants';
 import { AuthContext } from '../../core/context/authContext';
 
@@ -7,6 +9,11 @@ import './NavBar.css';
 
 const NavBar = () => {
 	const auth = useContext(AuthContext);
+	const dispatch = useDispatch();
+
+	const logout = () => {
+		console.log('logout');
+	};
 
 	return (
 		<nav className='navbar navbar-expand-lg navbar-dark bg-header mb-2'>
@@ -39,7 +46,7 @@ const NavBar = () => {
 				</ul>
 				<ul className='navbar-nav my-2 my-lg-0'>
 					<li class='nav-item dropdown'>
-						<span
+						<Link
 							class='nav-link dropdown-toggle'
 							id='navbarDropdown'
 							role='button'
@@ -47,7 +54,7 @@ const NavBar = () => {
 							aria-haspopup='true'
 							aria-expanded='false'>
 							Admin
-						</span>
+						</Link>
 						<div
 							class='dropdown-menu dropdown-menu-right text-left'
 							aria-labelledby='navbarDropdown'>
@@ -58,7 +65,7 @@ const NavBar = () => {
 								Change Password
 							</NavLink>
 							<div class='dropdown-divider'></div>
-							<NavLink class='dropdown-item' to={''}>
+							<NavLink class='dropdown-item' to={''} onClick={logout}>
 								Logout
 							</NavLink>
 						</div>
