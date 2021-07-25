@@ -6,7 +6,7 @@ const AuthorizedLayout = ({ children }) => {
 		<>
 			<>
 				<NavBar />
-				<div className='container-fluid'>
+				<div className='container'>
 					<div className='inner-body'>{children}</div>
 				</div>
 			</>

@@ -1,61 +1,105 @@
 import React from 'react';
-import Button from '../../components/UI/Button';
+import Button from '../../components/UI/Button/Button';
+import Table from '../../components/UI/Table/Table';
+import TableBody from '../../components/UI/Table/TableBody';
+import TableHeader from '../../components/UI/Table/TableHeader';
+
+const headings = ['Employee ID', 'Name', 'Email', 'Age', 'Address', 'Mobile'];
+
+const data = [
+	{
+		id: 1,
+		name: 'Alwin',
+		email: 'alwin@email.com',
+		age: 25,
+		address: 'alwin, chengannur, kerala',
+		mobile: '9000010000',
+	},
+];
 
 const Dashboard = () => {
 	return (
-		<div>
-			<div class='d-flex flex-row-reverse mb-3 mt-3'>
-				<div className='ml-3'>
-					<Button classNames='btn-sm px-3' title={'Add New Entry +'} />
+		<>
+			<div>
+				<div class='d-flex flex-row-reverse mb-3 mt-3'>
+					<div className='ml-3'>
+						<button
+							type='button'
+							class='btn btn-primary btn-sm'
+							data-toggle='modal'
+							data-target='#exampleModal'>
+							Add new entry +
+						</button>{' '}
+					</div>
+					<div className='ml-3'>
+						<form class='form-inline'>
+							<label class='sr-only' for='inlineFormInputName2'>
+								Name
+							</label>
+							<input
+								type='text'
+								class='form-control form-control-sm mb-2 mr-sm-2'
+								placeholder='search here...'
+							/>
+							<Button
+								type='submit'
+								classNames='btn btn-primary btn-sm mb-2'
+								title={'GO'}
+							/>
+						</form>
+					</div>
 				</div>
-				<div className='ml-3'>
-					<form class='form-inline'>
-						<label class='sr-only' for='inlineFormInputName2'>
-							Name
-						</label>
-						<input
-							type='text'
-							class='form-control form-control-sm mb-2 mr-sm-2'
-							placeholder='search here...'
-						/>
-						<Button
-							type='submit'
-							classNames='btn btn-primary btn-sm mb-2'
-							title={'GO'}
-						/>
-					</form>
+				<Table>
+					<TableHeader className='bg-light' headings={headings} />
+					<TableBody>
+						{data.map((emp) => (
+							<tr>
+								<td>{emp.id}</td>
+								<td>{emp.name}</td>
+								<td>{emp.email}</td>
+								<td>{emp.age}</td>
+								<td>{emp.address}</td>
+								<td>{emp.mobile}</td>
+							</tr>
+						))}
+					</TableBody>
+				</Table>
+			</div>
+
+			<div
+				class='modal fade'
+				id='exampleModal'
+				tabindex='-1'
+				role='dialog'
+				aria-labelledby='exampleModalLabel'
+				aria-hidden='true'>
+				<div class='modal-dialog' role='document'>
+					<div class='modal-content'>
+						<div class='modal-header'>
+							<h5 class='modal-title' id='exampleModalLabel'>
+								Modal title
+							</h5>
+							<button
+								type='button'
+								class='close'
+								data-dismiss='modal'
+								aria-label='Close'>
+								<span aria-hidden='true'>&times;</span>
+							</button>
+						</div>
+						<div class='modal-body'>...</div>
+						<div class='modal-footer'>
+							<button type='button' class='btn btn-secondary' data-dismiss='modal'>
+								Close
+							</button>
+							<button type='button' class='btn btn-primary'>
+								Save changes
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
-			<table class='table table-bordered'>
-				<thead className='bg-light'>
-					<tr>
-						<th scope='col'>#</th>
-						<th scope='col'>First</th>
-						<th scope='col'>Last</th>
-						<th scope='col'>Handle</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th scope='row'>1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope='row'>2</th>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>
-					</tr>
-					<tr>
-						<th scope='row'>3</th>
-						<td colspan='2'>Larry the Bird</td>
-						<td>@twitter</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		</>
 	);
 };
 

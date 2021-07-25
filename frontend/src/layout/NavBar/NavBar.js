@@ -10,8 +10,8 @@ const NavBar = () => {
 
 	return (
 		<nav className='navbar navbar-expand-lg navbar-dark bg-header mb-2'>
-			<NavLink className='navbar-brand' to={ROUTES.DASHBOARD}>
-				Navbar
+			<NavLink className='navbar-brand font-weight-bold' to={ROUTES.DASHBOARD}>
+				Employee Admin
 			</NavLink>
 			<button
 				className='navbar-toggler'

@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import FormGroup from '../../components/Form/FormGroup';
 import FormLabel from '../../components/Form/FormLabel';
 import TextInput from '../../components/Form/TextInput';
-import Button from '../../components/UI/Button';
-import Card from '../../components/UI/Card';
-import CardBody from '../../components/UI/CardBody';
-import CardHeader from '../../components/UI/CardHeader';
+import Button from '../../components/UI/Button/Button';
+import Card from '../../components/UI/Card/Card';
+import CardBody from '../../components/UI/Card/CardBody';
+import CardHeader from '../../components/UI/Card/CardHeader';
 
 import './Login.css';
 import ErrorText from '../../components/Form/ErrorText';
