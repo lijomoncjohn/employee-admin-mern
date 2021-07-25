@@ -4,6 +4,10 @@ const jwt = require('jsonwebtoken');
 
 const UserSchema = new mongoose.Schema(
 	{
+		employeeId: {
+			type: mongoose.Schema.Types.ObjectId,
+			required: [true, 'Please add an ID'],
+		},
 		name: {
 			type: String,
 			required: [true, 'Please add Name'],
@@ -12,6 +16,10 @@ const UserSchema = new mongoose.Schema(
 			type: String,
 			required: [true, 'Please add Email Id'],
 			unique: true,
+		},
+		address: {
+			type: String,
+			required: [true, 'Please add an Address'],
 		},
 		mobile: {
 			type: String,
