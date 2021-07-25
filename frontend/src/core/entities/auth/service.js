@@ -10,4 +10,11 @@ export class Service extends ApiWrapper {
 			data: values,
 		});
 	}
+	static async logout(token) {
+		return this.sendRequest({
+			url: `${Config.CONTROLLER_AUTH}/${Config.ACTION_LOGOUT}`,
+			method: ApiMethods.DELETE,
+			token,
+		});
+	}
 }

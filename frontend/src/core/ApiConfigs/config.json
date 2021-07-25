@@ -2,5 +2,6 @@
     "BASE_URL": "http://localhost:5000",
     "CONTROLLER_AUTH": "auth",
     "CONTROLLER_EMP": "employee",
-    "ACTION_TOKEN": "token"
+    "ACTION_TOKEN": "token",
+    "ACTION_LOGOUT": "logout"
 }

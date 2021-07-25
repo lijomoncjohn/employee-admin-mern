@@ -1,18 +1,29 @@
-import React, { useContext } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 
 import { ROUTES } from '../../core/base/constants';
 import { AuthContext } from '../../core/context/authContext';
+import { AuthAction } from '../../core/entities/auth/action';
 
 import './NavBar.css';
 
 const NavBar = () => {
 	const auth = useContext(AuthContext);
 	const dispatch = useDispatch();
+	const history = useHistory();
+
+	const logoutData = useSelector((state) => state.auth.logout);
+
+	useEffect(() => {
+		if (logoutData !== undefined && logoutData.success) {
+			auth.logout();
+			history.push('/');
+		}
+	}, [dispatch, logoutData]);
 
 	const logout = () => {
-		console.log('logout');
+		dispatch(AuthAction.logout(auth.token));
 	};
 
 	return (

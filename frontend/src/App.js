@@ -12,8 +12,6 @@ import Logout from './containers/Auth/Logout';
 function App() {
 	const { token, userId, login, logout } = useAuth();
 
-	console.log(token);
-
 	let routes;
 
 	if (token) {

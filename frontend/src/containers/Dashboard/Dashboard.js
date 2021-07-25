@@ -6,6 +6,7 @@ import Table from '../../components/UI/Table/Table';
 import TableBody from '../../components/UI/Table/TableBody';
 import TableHeader from '../../components/UI/Table/TableHeader';
 import { AuthContext } from '../../core/context/authContext';
+import { AuthAction } from '../../core/entities/auth/action';
 import { EmpAction } from '../../core/entities/employee/action';
 
 const headings = [
@@ -36,6 +37,7 @@ const Dashboard = () => {
 	const emp = useSelector((state) => state.emp.emp);
 
 	useEffect(() => {
+		dispatch(AuthAction.resetAuth());
 		dispatch(EmpAction.fetchAllEmpployees(auth.token));
 	}, []);
 
@@ -84,7 +86,7 @@ const Dashboard = () => {
 					<TableHeader className='bg-light' headings={headings} />
 					<TableBody>
 						{emp.data.map((emp) => (
-							<tr>
+							<tr key={emp._id}>
 								<td>{emp.id}</td>
 								<td>{emp.name}</td>
 								<td>{emp.email}</td>

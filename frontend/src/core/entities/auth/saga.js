@@ -23,4 +23,24 @@ const loginWatch = function* () {
 	yield takeLatest(ActionType.LOGIN_BEGIN, loginSaga);
 };
 
-export { loginWatch };
+const logoutSaga = function* (action) {
+	const logoutResponse = yield Service.logout(action.token);
+
+	if (!logoutResponse.error) {
+		yield put({
+			type: ActionType.LOGOUT_SUCCESS,
+			data: logoutResponse.value,
+		});
+	} else {
+		yield put({
+			type: ActionType.LOGOUT_FAILED,
+			data: logoutResponse.value,
+		});
+	}
+};
+
+const logoutWatch = function* () {
+	yield takeLatest(ActionType.LOGOUT_BEGIN, logoutSaga);
+};
+
+export { loginWatch, logoutWatch };

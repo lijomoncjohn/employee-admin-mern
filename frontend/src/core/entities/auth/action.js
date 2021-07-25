@@ -7,4 +7,15 @@ export const AuthAction = {
 			values,
 		};
 	},
+	logout(token) {
+		return {
+			type: ActionType.LOGOUT_BEGIN,
+			token,
+		};
+	},
+	resetAuth() {
+		return {
+			type: ActionType.RESET_AUTH,
+		};
+	},
 };

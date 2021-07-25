@@ -25,16 +25,12 @@ const Login = () => {
 
 	useEffect(() => {
 		if (login !== undefined && login.success) {
-			console.log(login.data.token);
 			auth.login(login.data.token, login.data.userId);
 			history.push('/dashboard');
-		} else {
-			console.log(login.message);
 		}
 	}, [dispatch, login]);
 
 	const handleLogin = (values, { setSubmitting }) => {
-		console.log(JSON.stringify(values));
 		dispatch(AuthAction.login(values));
 	};
 

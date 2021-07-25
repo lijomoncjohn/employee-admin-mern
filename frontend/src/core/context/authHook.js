@@ -21,7 +21,7 @@ export const useAuth = () => {
 		setToken(null);
 		setUserId(null);
 		localStorage.removeItem('userDetails');
-	});
+	}, []);
 
 	useEffect(() => {
 		const userData = JSON.parse(localStorage.getItem('userDetails'));
