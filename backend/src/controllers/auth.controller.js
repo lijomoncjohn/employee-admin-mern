@@ -1,6 +1,7 @@
+const catchAsync = require('../hepers/catchAsync');
 const ErrorResponse = require('../utils/errorResponse');
 
-exports.login = async (req, res, next) => {
+exports.login = catchAsync(async (req, res, next) => {
 	const { email, password } = req.body;
 
 	const user = await User.findOne({ email, role: 'admin' });
@@ -32,7 +33,7 @@ exports.login = async (req, res, next) => {
 			userId: user._id,
 		},
 	});
-};
+});
 
 exports.recoverPassword = async (req, res, next) => {
 	res.status(200).json({
@@ -46,19 +47,15 @@ exports.resetPassword = async (req, res, next) => {
 	});
 };
 
-exports.logout = async (req, res, next) => {
-	try {
-		req.user.tokens = req.user.tokens.filter((token) => {
-			return token.token !== req.token;
-		});
+exports.logout = catchAsync(async (req, res, next) => {
+	req.user.tokens = req.user.tokens.filter((token) => {
+		return token.token !== req.token;
+	});
 
-		await req.user.save();
+	await req.user.save();
 
-		return res.status(200).json({
-			success: true,
-			message: 'Logged out successfully',
-		});
-	} catch (error) {
-		return next(new ErrorResponse('Failed to logout from server', 500));
-	}
-};
+	return res.status(200).json({
+		success: true,
+		message: 'Logged out successfully',
+	});
+});
