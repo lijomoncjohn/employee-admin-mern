@@ -2,10 +2,12 @@ import { createReducer } from '@reduxjs/toolkit';
 import { ActionType } from './actionType';
 import { initialAuthState } from './state';
 
+import { ApiStatus, AUTH_STATE } from '../../base/constants';
+
 const reducer = createReducer(initialAuthState, {
 	// Login
 	[ActionType.LOGIN_BEGIN]: (state) => {
-		state.login.success = false;
+		state.login.success = ApiStatus.LOADING;
 		state.login.message = null;
 		state.login.data = {};
 		state.login.error = null;
@@ -13,19 +15,19 @@ const reducer = createReducer(initialAuthState, {
 	[ActionType.LOGIN_SUCCESS]: (state, data) => {
 		state.apiStatus = 1;
 		if (data.data.success) {
-			state.login.success = true;
+			state.login.success = AUTH_STATE.LOGIN_SUCCESS;
 			state.login.message = data.data.message || 'success';
 			state.login.error = null;
 			state.login.data = data.data.data;
 		} else {
-			state.login.success = false;
+			state.login.success = AUTH_STATE.LOGIN_FAILED;
 			state.login.message = data.data.message;
 			state.login.error = data.data.error;
 		}
 	},
 	[ActionType.LOGIN_FAILED]: (state, data) => {
 		state.apiStatus = 1;
-		state.login.success = false;
+		state.login.success = AUTH_STATE.LOGIN_FAILED;
 		state.login.message = data.data.message;
 		state.login.error = data.data.error;
 	},
@@ -37,7 +39,7 @@ const reducer = createReducer(initialAuthState, {
 		state.logout.error = null;
 	},
 	[ActionType.LOGOUT_SUCCESS]: (state, data) => {
-		state.apiStatus = 1;
+		state.apiStatus = ApiStatus.LOADING;
 		if (data.data.success) {
 			state.logout.success = true;
 			state.logout.message = data.data.message || 'success';

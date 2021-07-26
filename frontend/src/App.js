@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ToastProvider, useToasts } from 'react-toast-notifications';
 
 import { ROUTES } from './core/base/constants';
 
@@ -39,9 +40,11 @@ function App() {
 				login: login,
 				logout: logout,
 			}}>
-			<Router>
-				<Layout isAuthorised={!!token}>{routes}</Layout>
-			</Router>
+			<ToastProvider autoDismiss autoDismissTimeout={3000}>
+				<Router>
+					<Layout isAuthorised={!!token}>{routes}</Layout>
+				</Router>
+			</ToastProvider>
 		</AuthContext.Provider>
 	);
 }
