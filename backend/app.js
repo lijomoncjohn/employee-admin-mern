@@ -32,7 +32,12 @@ app.use(errorHandler);
 const PORT = process.env.PORT;
 
 // Start server
-const server = app.listen(PORT, console.log(`Server running in port ${PORT}`));
+const server = app.listen(
+	PORT,
+	console.log(
+		`Server running in port ${PORT} in ${process.env.NODE_ENVIRONMENT} mode`
+	)
+);
 
 // Close server on getting Error: UnhandledPromiseRejection
 process.on('unhandledRejection', (err, promise) => {

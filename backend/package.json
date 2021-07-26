@@ -4,7 +4,7 @@
   "description": "backend api for employee-admin app",
   "main": "app.js",
   "scripts": {
-    "start": "node app",
+    "start": "SET NODE_ENVIRONMENT=production & node app",
     "dev": "nodemon start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
