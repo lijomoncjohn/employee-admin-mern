@@ -4,6 +4,7 @@ import {
 	addEmpWatch,
 	deleteEmpWatch,
 	fetchAllEmpsWatch,
+	searchEmpWatch,
 	updateEmpWatch,
 } from '../entities/employee/saga';
 
@@ -15,5 +16,6 @@ export default function* rootSaga() {
 		addEmpWatch(),
 		updateEmpWatch(),
 		deleteEmpWatch(),
+		searchEmpWatch(),
 	]);
 }

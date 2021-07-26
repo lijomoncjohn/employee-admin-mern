@@ -3,5 +3,6 @@
     "CONTROLLER_AUTH": "auth",
     "CONTROLLER_EMP": "employee",
     "ACTION_TOKEN": "token",
-    "ACTION_LOGOUT": "logout"
+    "ACTION_LOGOUT": "logout",
+    "ACTION_SEARCH": "search"
 }

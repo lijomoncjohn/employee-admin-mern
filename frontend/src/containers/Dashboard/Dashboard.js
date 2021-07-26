@@ -29,6 +29,7 @@ const Dashboard = () => {
 	const emp = useSelector((state) => state.emp.emp);
 
 	const [modal, setModal] = useState(false);
+	const [searchTerm, setSearchTerm] = useState('');
 
 	const handleClose = () => {
 		setModal(false);
@@ -84,6 +85,15 @@ const Dashboard = () => {
 		}
 	};
 
+	const handleSearch = () => {
+		if (searchTerm.length >= 2) {
+			dispatch(EmpAction.search(auth.token, searchTerm));
+		}
+		if (searchTerm.length === 0) {
+			dispatch(EmpAction.fetchAllEmpployees(auth.token));
+		}
+	};
+
 	useEffect(() => {
 		dispatch(AuthAction.resetAuth());
 		dispatch(EmpAction.fetchAllEmpployees(auth.token));
@@ -101,10 +111,6 @@ const Dashboard = () => {
 		}
 	}, [dispatch, auth.token]);
 
-	if (emp === undefined || emp.data.length === 0) {
-		return <h3>No employees</h3>;
-	}
-
 	return (
 		<>
 			<div>
@@ -117,7 +123,7 @@ const Dashboard = () => {
 						/>
 					</div>
 					<div className='ml-3'>
-						<form className='form-inline'>
+						<div className='form-inline'>
 							<label className='sr-only' for='inlineFormInputName2'>
 								Name
 							</label>
@@ -125,13 +131,15 @@ const Dashboard = () => {
 								type='text'
 								className='form-control form-control-sm mb-2 mr-sm-2'
 								placeholder='search here...'
+								onChange={(e) => setSearchTerm(e.target.value)}
 							/>
 							<Button
 								type='submit'
 								className='btn btn-outline-primary btn-sm mb-2'
 								title={'GO'}
+								onClick={handleSearch}
 							/>
-						</form>
+						</div>
 					</div>
 				</div>
 				<Table className='table-sm'>

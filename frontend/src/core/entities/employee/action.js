@@ -29,4 +29,11 @@ export const EmpAction = {
 			empId,
 		};
 	},
+	search(token, term) {
+		return {
+			type: ActionType.SEARCH_EMPLOYEE_BEGIN,
+			token,
+			term,
+		};
+	},
 };

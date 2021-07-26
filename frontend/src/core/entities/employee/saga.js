@@ -94,4 +94,30 @@ const deleteEmpWatch = function* () {
 	yield takeLatest(ActionType.DELETE_EMPLOYEE_BEGIN, deleteEmpSaga);
 };
 
-export { fetchAllEmpsWatch, addEmpWatch, updateEmpWatch, deleteEmpWatch };
+const searchEmpSaga = function* (action) {
+	const empSearchResponse = yield Service.search(action.token, action.term);
+
+	if (!empSearchResponse.error) {
+		yield put({
+			type: ActionType.SEARCH_EMPLOYEE_SUCCESS,
+			data: empSearchResponse.value,
+		});
+	} else {
+		yield put({
+			type: ActionType.SEARCH_EMPLOYEE_FAILED,
+			data: empSearchResponse.value,
+		});
+	}
+};
+
+const searchEmpWatch = function* () {
+	yield takeLatest(ActionType.SEARCH_EMPLOYEE_BEGIN, searchEmpSaga);
+};
+
+export {
+	fetchAllEmpsWatch,
+	addEmpWatch,
+	updateEmpWatch,
+	deleteEmpWatch,
+	searchEmpWatch,
+};

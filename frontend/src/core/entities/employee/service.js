@@ -34,4 +34,15 @@ export class Service extends ApiWrapper {
 			token,
 		});
 	}
+	static async search(token, term) {
+		let queryParam;
+		if (term) {
+			queryParam = `k=${term}`;
+		}
+		return this.sendRequest({
+			url: `${Config.CONTROLLER_EMP}/${Config.ACTION_SEARCH}?${queryParam}`,
+			method: ApiMethods.GET,
+			token,
+		});
+	}
 }

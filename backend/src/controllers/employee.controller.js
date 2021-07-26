@@ -128,8 +128,6 @@ exports.search = catchAsync(async (req, res, next) => {
 		}
 	}
 
-	console.log(conditions);
-
 	const employees = await User.find(conditions);
 
 	return res.status(201).json({
