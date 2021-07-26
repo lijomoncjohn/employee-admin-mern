@@ -100,3 +100,41 @@ exports.remove = catchAsync(async (req, res, next) => {
 		message: 'Employees details removed successfully',
 	});
 });
+
+exports.search = catchAsync(async (req, res, next) => {
+	const key = req.query.k ? req.query.k.toString().trim() : '';
+
+	let conditions = { role: 'employee' };
+
+	if (key) {
+		conditions.$or = [
+			{ name: { $regex: key, $options: 'si' } },
+			{ email: { $regex: key, $options: 'si' } },
+			{ mobile: { $regex: key, $options: 'si' } },
+			{ employeeId: { $regex: key, $options: 'si' } },
+			{ address: { $regex: key, $options: 'si' } },
+		];
+
+		let age = Number(key);
+		if (parseInt(age)) {
+			conditions.$or = [
+				{ name: { $regex: key, $options: 'si' } },
+				{ email: { $regex: key, $options: 'si' } },
+				{ mobile: { $regex: key, $options: 'si' } },
+				{ employeeId: { $regex: key, $options: 'si' } },
+				{ age: { $eq: Number(key) } },
+				{ address: { $regex: key, $options: 'si' } },
+			];
+		}
+	}
+
+	console.log(conditions);
+
+	const employees = await User.find(conditions);
+
+	return res.status(201).json({
+		success: true,
+		message: 'Employees details found',
+		data: employees,
+	});
+});

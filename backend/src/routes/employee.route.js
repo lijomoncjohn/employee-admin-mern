@@ -5,6 +5,8 @@ const { authenticate, authorize } = require('../helpers/auth');
 
 const router = express.Router();
 
+router.route('/search').get(employeeController.search);
+
 router
 	.route('/')
 	.post(employeeController.create)
