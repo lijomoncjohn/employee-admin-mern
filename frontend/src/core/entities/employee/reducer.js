@@ -78,6 +78,31 @@ const reducer = createReducer(initialEmpState, {
 		state.emp.message = data.data.message;
 		state.emp.error = data.data.error;
 	},
+
+	// Delete employee details
+	[ActionType.DELETE_EMPLOYEE_BEGIN]: (state) => {
+		state.emp.success = false;
+		state.emp.message = null;
+		state.emp.error = null;
+	},
+	[ActionType.DELETE_EMPLOYEE_SUCCESS]: (state, data) => {
+		state.apiStatus = 1;
+		if (data.data.success) {
+			state.emp.success = true;
+			state.emp.message = data.data.message || 'success';
+			state.emp.error = null;
+		} else {
+			state.emp.success = false;
+			state.emp.message = data.data.message;
+			state.emp.error = data.data.error;
+		}
+	},
+	[ActionType.DELETE_EMPLOYEE_FAILED]: (state, data) => {
+		state.apiStatus = 1;
+		state.emp.success = false;
+		state.emp.message = data.data.message;
+		state.emp.error = data.data.error;
+	},
 });
 
 export default reducer;

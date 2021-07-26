@@ -75,7 +75,14 @@ const Dashboard = () => {
 		setModal(true);
 	};
 
-	const handleDelete = () => {};
+	const handleDelete = (id) => {
+		let confirmation = window.confirm('Are you sure you want delete this item?');
+		if (confirmation) {
+			dispatch(EmpAction.delete(auth.token, id));
+		} else {
+			return;
+		}
+	};
 
 	useEffect(() => {
 		dispatch(AuthAction.resetAuth());
@@ -144,7 +151,11 @@ const Dashboard = () => {
 										title={'Edit'}
 										onClick={() => handleEdit(emp)}
 									/>
-									<Button className='btn-sm btn-danger' title={'Delete'} />
+									<Button
+										className='btn-sm btn-danger'
+										title={'Delete'}
+										onClick={() => handleDelete(emp._id)}
+									/>
 								</td>
 							</tr>
 						))}

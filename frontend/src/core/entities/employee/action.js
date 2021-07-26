@@ -22,4 +22,11 @@ export const EmpAction = {
 			values,
 		};
 	},
+	delete(token, empId) {
+		return {
+			type: ActionType.DELETE_EMPLOYEE_BEGIN,
+			token,
+			empId,
+		};
+	},
 };

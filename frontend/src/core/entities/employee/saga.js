@@ -70,4 +70,28 @@ const updateEmpWatch = function* () {
 	yield takeLatest(ActionType.UPDATE_EMPLOYEE_BEGIN, updateEmpSaga);
 };
 
-export { fetchAllEmpsWatch, addEmpWatch, updateEmpWatch };
+const deleteEmpSaga = function* (action) {
+	const empDeleteResponse = yield Service.deleteEmployee(
+		action.token,
+		action.empId,
+		action.values
+	);
+
+	if (!empDeleteResponse.error) {
+		yield put({
+			type: ActionType.DELETE_EMPLOYEE_SUCCESS,
+			data: empDeleteResponse.value,
+		});
+	} else {
+		yield put({
+			type: ActionType.DELETE_EMPLOYEE_FAILED,
+			data: empDeleteResponse.value,
+		});
+	}
+};
+
+const deleteEmpWatch = function* () {
+	yield takeLatest(ActionType.DELETE_EMPLOYEE_BEGIN, deleteEmpSaga);
+};
+
+export { fetchAllEmpsWatch, addEmpWatch, updateEmpWatch, deleteEmpWatch };

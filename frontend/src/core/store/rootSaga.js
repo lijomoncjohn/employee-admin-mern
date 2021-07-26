@@ -2,6 +2,7 @@ import { all } from 'redux-saga/effects';
 import { loginWatch, logoutWatch } from '../entities/auth/saga';
 import {
 	addEmpWatch,
+	deleteEmpWatch,
 	fetchAllEmpsWatch,
 	updateEmpWatch,
 } from '../entities/employee/saga';
@@ -13,5 +14,6 @@ export default function* rootSaga() {
 		fetchAllEmpsWatch(),
 		addEmpWatch(),
 		updateEmpWatch(),
+		deleteEmpWatch(),
 	]);
 }
